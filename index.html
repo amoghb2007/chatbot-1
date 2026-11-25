@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minecraft AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader"><div class="lbar"><i></i></div><p>Generating terrain...</p></div>
+<div id="particles" aria-hidden="true"></div>
+<div id="app">
+  <aside id="sidebar">
+    <div class="logo"><span class="av assistant"></span><span>MINECRAFT AI</span></div>
+    <button id="newChat" class="btn green">+ New Chat</button>
+    <input id="search" placeholder="Search chats..." aria-label="Search conversations">
+    <ul id="chatList"></ul>
+    <div class="foot">
+      <button id="openApi" class="btn">API Config</button>
+      <button id="themeBtn" class="btn">Day / Night</button>
+      <button id="soundBtn" class="btn">Sound: on</button>
+      <button id="clearAll" class="btn red">Clear History</button>
+    </div>
+  </aside>
+  <main>
+    <header>
+      <button id="menuBtn" class="btn sm" aria-label="Toggle sidebar">&#9776;</button>
+      <div class="xp" title="Experience"><i id="xpFill"></i><b id="xpLvl">Lv 1</b></div>
+      <span id="status" class="status">Disconnected (demo)</span>
+      <button id="clearChat" class="btn sm red" aria-label="Clear this conversation">Clear</button>
+    </header>
+    <section id="messages" aria-live="polite"></section>
+    <footer>
+      <textarea id="input" rows="1" placeholder="Ask anything, Minecrafter..." aria-label="Message"></textarea>
+      <button id="send" class="btn green">Send</button>
+      <button id="stop" class="btn red" hidden>Stop</button>
+    </footer>
+  </main>
+</div>
+<div id="toasts"></div>
+<div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="card">
+    <h2 id="mt">Crafting Table: API Config</h2>
+    <p class="warn"><b>Security warning:</b> keys kept in browser storage are not secure. Any script or extension on this page can read them, and direct browser requests expose your key to your browser and network. Real secret protection needs a backend or serverless proxy. Use a key with a spend limit.</p>
+    <label>Provider
+      <select id="provider"><option value="openai">OpenAI</option><option value="openrouter">OpenRouter</option><option value="groq">Groq</option><option value="gemini">Google Gemini</option><option value="mistral">Mistral</option><option value="deepseek">DeepSeek</option><option value="custom">Custom (OpenAI-compatible)</option></select>
+    </label>
+    <p class="row wrap"><button id="groqQuick" class="btn sm" type="button">Quick Groq setup</button><button id="loadModels" class="btn sm" type="button">Load models</button><a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Get a Groq key</a></p>
+    <label>API key
+      <span class="row"><input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your API key"><button id="showKey" class="btn sm" type="button">Show</button></span>
+    </label>
+    <label>Endpoint<input id="endpoint" type="url" spellcheck="false"></label>
+    <label>Model<input id="model" list="models" spellcheck="false"><datalist id="models"></datalist></label>
+    <label class="chk"><input id="persist" type="checkbox"> Save key in localStorage (less safe). Unchecked keeps it in memory only until you reload (recommended).</label>
+    <p>Connection: <b id="mstatus">Not tested</b></p>
+    <div class="row wrap">
+      <button id="saveApi" class="btn green">Save</button>
+      <button id="testApi" class="btn">Test</button>
+      <button id="removeKey" class="btn red">Remove key</button>
+      <button id="closeApi" class="btn">Close</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
